@@ -21,10 +21,19 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
         // Listen for messages from the Sidebar component and execute action
         webviewView.webview.onDidReceiveMessage(async (data) => {
             switch (data.type) {
-                // case "onSomething: {
-                //     // code here...
-                //     break;
-                // }
+                case "onFetchText": {
+                    let editor = vscode.window.activeTextEditor;
+
+                    if (editor === undefined) {
+                        vscode.window.showErrorMessage('No active text editor');
+                        return;
+                    }
+
+                    let text = editor.document.getText(editor.selection);
+                    // send message back to the sidebar component
+                    this._view?.webview.postMessage({ type: "onSelectedText", value: text });
+                    break;
+                }
                 case "onInfo": {
                     if (!data.value) {
                         return;

@@ -15,6 +15,7 @@
 	},
 	"activationEvents": [
 		"onCommand:myextension.sayhello",
+		"onCommand:myextension.askquestion",
 		"onView:myextension-sidebar"
 	],
 	"main": "./dist/extension.js",
@@ -44,6 +45,11 @@
 				"command": "myextension.sayhello",
 				"category": "MyExtension",
 				"title": "Say hello"
+			},
+			{
+				"command": "myextension.askquestion",
+				"category": "MyExtension",
+				"title": "Ask question"
 			}
 		]
 	},
